@@ -67,7 +67,7 @@ record(ai, "$(P)STIR:SPEED:MIN") {
 
 record(ai, "$(P)STIR:SPEED") {
     field(DESC, "Stirrer speed")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(INP, "@quantumnorthwest.proto getSpeed $(PORT)")
 	field(EGU, "rpm")
@@ -87,7 +87,7 @@ record(ao, "$(P)STIR:SPEED:SP") {
 
 record(bi, "$(P)TEMP:ENABLED") {
     field(DESC, "Temperature control enabled")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(INP, "@quantumnorthwest.proto getTempEnab $(PORT)")
     field(ZNAM, "No")
@@ -107,7 +107,7 @@ record(bo, "$(P)TEMP:ENABLED:SP") {
 
 record(ai, "$(P)TEMP") {
     field(DESC, "Temperature")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(INP, "@quantumnorthwest.proto getTemp $(PORT)")
 	field(PREC, "2")
@@ -128,7 +128,7 @@ record(ao, "$(P)TEMP:SP") {
 
 record(ai, "$(P)TEMP:SP:RBV") {
     field(DESC, "Temperature setpoint readback")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(INP, "@quantumnorthwest.proto getTempSp $(PORT)")
 	field(PREC, "2")
@@ -139,7 +139,7 @@ record(ai, "$(P)TEMP:SP:RBV") {
 
 record(bi, "$(P)TEMP:STAT") {
     field(DESC, "Temperature status")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(INP, "@quantumnorthwest.proto getTempStat $(PORT)")
 	field(ZNAM, "Changing")

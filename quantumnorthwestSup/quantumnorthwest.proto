@@ -1,6 +1,11 @@
 InTerminator = "]";
 OutTerminator = "]";
 
+ReadTimeout = 2000;
+ReplyTimeout = 2000;
+WriteTimeout = 2000;
+LockTimeout = 5000;
+
 disableReports {
     out "[F1 XX R-";
 }

@@ -27,7 +27,7 @@ class QuantumNorthwestTests(unittest.TestCase):
 
     def setUp(self):
         self._lewis, self._ioc = get_running_lewis_and_ioc("quantumnorthwest", DEVICE_PREFIX)
-        self.ca = ChannelAccess(device_prefix=DEVICE_PREFIX)
+        self.ca = ChannelAccess(device_prefix=DEVICE_PREFIX, default_timeout=15)
 
     @skip_if_recsim("requires lewis")
     def test_id(self):
