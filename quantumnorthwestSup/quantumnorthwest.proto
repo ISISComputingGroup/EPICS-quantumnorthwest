@@ -1,0 +1,96 @@
+InTerminator = "]";
+OutTerminator = "]";
+
+ReadTimeout = 2000;
+ReplyTimeout = 2000;
+WriteTimeout = 2000;
+LockTimeout = 5000;
+
+disableReports {
+    out "[F1 XX R-";
+}
+
+getID {
+    out "[F1 ID ?";
+    in "[F1 ID %{00|14|24|34}";  # Only allowed identities from manual
+}
+
+getMaxSpeed {
+    out "[F1 MS ?";
+    in "[F1 MS %f";
+}
+
+getMinSpeed {
+    out "[F1 LS ?";
+    in "[F1 LS %f";
+}
+
+getSpeed {
+    out "[F1 SS ?";
+    in "[F1 SS %f";
+}
+
+setSpeed {
+    out "[F1 SS S %d";
+}
+
+getTempEnab {
+    out "[F1 IS ?";
+    in "[F1 IS %*d%*{-|+}%{-|+}%*{S|C}";
+}
+
+setTempEnab {
+    out "[F1 TC %{-|+}";
+}
+
+getTemp {
+    out "[F1 CT ?";
+    in "[F1 CT %f";
+}
+
+setTemp {
+    out "[F1 TT S %.2f";
+}
+
+getTempSp {
+    out "[F1 TT ?";
+    in "[F1 TT %f";
+}
+
+getTempStat {
+    out "[F1 IS ?";
+    in "[F1 IS %*d%*{-|+}%*{-|+}%{C|S}";
+}
+
+getMinTemp {
+    out "[F1 LT ?";
+    in "[F1 LT %f";
+}
+
+getMaxTemp {
+    out "[F1 MT ?";
+    in "[F1 MT %f";
+}
+
+getProbeTemp {
+    out "[F1 PT ?";
+    in "[F1 PT %f";
+}
+
+getTempRate {
+    out "[F1 RR ?";
+    in "[F1 RR %f";
+}
+
+setTempRate {
+    out "[F1 RR S %.2f";
+}
+
+getHxTemp {
+    out "[F1 HT ?";
+    in "[F1 HT %f";
+}
+
+junk {
+    in "[%*#s";
+}

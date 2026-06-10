@@ -1,0 +1,213 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)AUTOREPORTDISABLE") {
+    field(SCAN, "10 second")
+	field(DTYP, "stream")
+	field(OUT, "@quantumnorthwest.proto disableReports $(PORT)")
+}
+
+record(stringin, "$(P)_JUNK") {
+    field(DTYP, "stream")
+    field(SCAN, "I/O Intr")
+    field(INP, "@quantumnorthwest.proto junk $(PORT)")
+}
+
+record(mbbi, "$(P)ID") {
+    field(DESC, "Sample Holder Type")
+	field(SCAN, "5 second")
+	field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getID $(PORT)")
+    field(ZRST, "Speciality")
+    field(ONST, "t2")
+    field(TWST, "t2x2")
+    field(THST, "turret6")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)STIR:SPEED:MAX") {
+    field(DESC, "Maximum stirrer speed")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getMaxSpeed $(PORT)")
+	field(EGU, "rpm")
+	field(PREC, "0")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)STIR:SPEED:MIN") {
+    field(DESC, "Minimum stirrer speed")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getMinSpeed $(PORT)")
+	field(EGU, "rpm")
+	field(PREC, "0")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)STIR:SPEED") {
+    field(DESC, "Stirrer speed")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getSpeed $(PORT)")
+	field(EGU, "rpm")
+	field(PREC, "0")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)STIR:SPEED:SP") {
+    field(DESC, "Set stirrer speed")
+    field(DTYP, "stream")
+	field(OUT, "@quantumnorthwest.proto setSpeed $(PORT)")
+	field(EGU, "rpm")
+	field(PREC, "0")
+	field(UDFS, "NO_ALARM")
+}
+
+record(bi, "$(P)TEMP:ENABLED") {
+    field(DESC, "Temperature control enabled")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getTempEnab $(PORT)")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)TEMP:ENABLED:SP") {
+    field(DESC, "Temperature control enabled")
+    field(DTYP, "stream")
+	field(OUT, "@quantumnorthwest.proto setTempEnab $(PORT)")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(UDFS, "NO_ALARM")
+}
+
+record(ai, "$(P)TEMP") {
+    field(DESC, "Temperature")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getTemp $(PORT)")
+	field(PREC, "2")
+	field(EGU, "C")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "QNW")
+}
+
+record(ao, "$(P)TEMP:SP") {
+    field(DESC, "Temperature setpoint")
+    field(DTYP, "stream")
+	field(OUT, "@quantumnorthwest.proto setTemp $(PORT)")
+	field(PREC, "2")
+	field(EGU, "C")
+	field(UDFS, "NO_ALARM")
+}
+
+record(ai, "$(P)TEMP:SP:RBV") {
+    field(DESC, "Temperature setpoint readback")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getTempSp $(PORT)")
+	field(PREC, "2")
+	field(EGU, "C")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)TEMP:STAT") {
+    field(DESC, "Temperature status")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getTempStat $(PORT)")
+	field(ZNAM, "Changing")
+	field(ONAM, "Stable")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)TEMP:MIN") {
+    field(DESC, "Minimum temperature")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getMinTemp $(PORT)")
+	field(EGU, "C")
+	field(PREC, "2")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)TEMP:MAX") {
+    field(DESC, "Maximum temperature")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getMaxTemp $(PORT)")
+	field(EGU, "C")
+	field(PREC, "2")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)TEMP:PROBE") {
+    field(DESC, "Probe temperature")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getProbeTemp $(PORT)")
+	field(EGU, "C")
+	field(PREC, "2")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)TEMP:RATE") {
+    field(DESC, "Temperature ramp rate")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getTempRate $(PORT)")
+	field(EGU, "C/min")
+	field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)TEMP:RATE:SP") {
+    field(DESC, "Temperature ramp rate")
+    field(DTYP, "stream")
+	field(OUT, "@quantumnorthwest.proto setTempRate $(PORT)")
+	field(PREC, "2")
+	field(EGU, "C/min")
+	field(UDFS, "NO_ALARM")
+}
+
+record(ai, "$(P)TEMP:HX") {
+    field(DESC, "Heat exchanger temperature")
+    field(SCAN, "5 second")
+    field(DTYP, "stream")
+	field(INP, "@quantumnorthwest.proto getHxTemp $(PORT)")
+	field(EGU, "C")
+	field(PREC, "2")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
